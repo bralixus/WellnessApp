@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Witaj w naszym SPA";
+}
+
+<div class="jumbotron" align ="justify">
+    <h2>Wybierz jedą z naszych usług</h2>
+    <p class="lead">
+        Nasze Wellness & SPA to świat dwunastu gabinetów i indywidualnych zabiegów dla urody, 
+        zdrowia i kondycji dopasowanych do osobistych upodobań każdego Gościa. To także strefa 
+        wellness z basenem, jacuzzi, zmysłowymi saunami, ziołowym domkiem, salą cardio, wypoczywalnią 
+        i zewnętrznym parkiem relaksu i aktywności.
+    </p>
+
+</div>
+
+<div class="row m-3 text-center">
+    <div class="col-md-4">
+        <h2>Masaże</h2>
+        <p><a class="btn btn-default" @Html.ActionLink("Wejdź", "Index", "Services")></a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Sauna</h2>
+        <p><a class="btn btn-default" @Html.ActionLink("Wejdź", "Sauna", "Home")></a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Basen</h2>
+        <p><a class="btn btn-default" @Html.ActionLink("Wejdź", "Pool", "Home")></a></p>
+    </div>
+</div>

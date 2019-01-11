@@ -1,0 +1,65 @@
+﻿@using WebApplication1.Controllers
+@model IEnumerable<WebApplication1.Models.Service>
+
+
+<div class="jumbotron" align="justify">
+    <h2>Nasza oferta masaży</h2>
+    <p class="lead">
+        Masaże pobudzają zmysły, wprawiają w dobre samopoczucie i uwalniają pozytywną energię.
+        W Spa proponujemy ponad 10 rodzajów masaży, od klasycznego po orientalne i lecznicze,
+        które zwalczają stres, usuwają blokadę mięśni i odprężają. Warto również skorzystać
+        z kompleksowych programów pielęgnacyjnych, czyli rytuałów wellness, które przeplatają zapachy,
+        dźwięki, kolory i dotyk. Są doskonałą metodą ucieczki od pośpiechu i stresu. Dzięki rytuałom
+        poprawisz swoje samopoczucie, zrelaksujesz się oraz odprężysz. Zadbasz też o piękny wygląd.
+        Każdy z rytuałów oddziałuje na wszystkie ludzkie zmysły.
+    </p>
+
+</div>
+
+<table class="table row m-3">
+    <tr>
+        <th>
+            <h4 class="text-left">Nazwa</h4>
+        </th>
+
+        <th></th>
+    </tr>
+    @if (User.IsInRole("Owner"))
+    {
+        @Html.ActionLink("Lista wszystkich rezerwacji", "Index", "IdentityServices")
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-left">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+            @{
+                if (User.IsInRole("Owner"))
+                {
+                    <td class="text-right">
+                        @Html.ActionLink("Dodaj usługę", "Create") |
+                        @Html.ActionLink("Edytuj usługę", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Szczegóły usługi", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Usuń usługę", "Delete", new { id = item.Id })
+                    </td>
+                }
+                else if (User.IsInRole("User"))
+                {
+                    <td class="text-right">
+                        @Html.ActionLink("Szczegóły", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Zarezerwuj", "Create", "IdentityServices")
+                    </td>
+                }
+                else
+                {
+                    <td class="text-right">
+                        @Html.ActionLink("Szczegóły usługi", "Details", new { id = item.Id })
+                    </td>
+                }
+            }
+        </tr>
+    }
+</table>
+

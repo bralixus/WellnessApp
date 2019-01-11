@@ -1,0 +1,49 @@
+﻿@model WebApplication1.Models.Service
+
+@{
+    ViewBag.Title = "Szczegóły";
+}
+
+<h2>Szczegóły</h2>
+
+<div>
+  <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <h4>Nazwa</h4>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            <h4>Opis</h4>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+@if (User.IsInRole("Owner"))
+{
+    <p>
+        @Html.ActionLink("Zarezerwuj", "Create", "IdentityServices") |
+        @Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Anuluj", "Index")
+    </p>
+}
+@if (User.IsInRole("User"))
+{
+    <p>
+        @Html.ActionLink("Zarezerwuj", "Create", "IdentityServices") |
+        @Html.ActionLink("Anuluj", "Index")
+    </p>
+}
+@if (User.Identity == null)
+{
+    <label>Zaloguj się, aby zarezerwować</label>
+    @Html.ActionLink("Zarezerwuj", "Create", "IdentityServices")
+}
